@@ -1,7 +1,3 @@
-"""
-Szkielet dla Osoby 3.
-Cel: powtarzalne eksperymenty na własnej sieci.
-"""
 
 from __future__ import annotations
 
@@ -164,7 +160,6 @@ def generate_plots(task_name: str) -> None:
 
 
 if __name__ == "__main__":
-    # Kod Osoby 3 - Odpala w pełni zgodne pętle dla obydwu list!
     tasks = ["classification_divorce", "regression_children"]
     
     EXPERIMENT_SCHEMAS_EXACT = {
