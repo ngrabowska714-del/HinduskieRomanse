@@ -1,3 +1,7 @@
+"""
+Szkielet dla Osoby 3.
+Cel: powtarzalne eksperymenty na własnej sieci.
+"""
 
 from __future__ import annotations
 
@@ -164,3 +168,22 @@ def generate_plots(task_name: str) -> None:
         plt.close()
         print(f"Zapisano wykres: {plot_path}")
 
+
+if __name__ == "__main__":
+    # Kod dodany na prośbę zespołu - odpalamy dokładnie 4 wymagane eksperymenty dla klasyfikacji
+    task = "classification_divorce"
+    
+    EXPERIMENT_SCHEMAS_EXACT = {
+        "test_hidden_layer": {"hidden_layer_sizes": [[8], [16, 8], [32, 16], [32, 16, 8]]},
+        "test_epochs": {"epochs": [10, 50, 100, 200]},
+        "test_batch_size": {"batch_size": [16, 32, 64, 128]},
+        "test_learning_rate": {"learning_rate": [0.001, 0.01, 0.05, 0.1]}
+    }
+    
+    print(f"\nUruchamiam domknięcie klasyfikacji: {task}")
+    for exp_name, grid in EXPERIMENT_SCHEMAS_EXACT.items():
+        print(f"-> {exp_name}")
+        run_experiments(task_name=task, experiment_grid=grid, n_repeats=3)
+        
+    generate_plots(task)
+    print("Eksperymenty klasyfikacyjne zakończone sukcesem!")
