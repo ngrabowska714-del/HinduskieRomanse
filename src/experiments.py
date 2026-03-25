@@ -1,4 +1,7 @@
-
+"""
+Szkielet dla Osoby 3.
+Cel: powtarzalne eksperymenty na własnej sieci.
+"""
 
 from __future__ import annotations
 
@@ -161,7 +164,8 @@ def generate_plots(task_name: str) -> None:
 
 
 if __name__ == "__main__":
-    task = "classification_divorce"
+    # Kod Osoby 3 - Odpala w pełni zgodne pętle dla obydwu list!
+    tasks = ["classification_divorce", "regression_children"]
     
     EXPERIMENT_SCHEMAS_EXACT = {
         "test_hidden_layer": {"hidden_layer_sizes": [[8], [16, 8], [32, 16], [32, 16, 8]]},
@@ -170,10 +174,15 @@ if __name__ == "__main__":
         "test_learning_rate": {"learning_rate": [0.001, 0.01, 0.05, 0.1]}
     }
     
-    print(f"\nUruchamiam domknięcie klasyfikacji: {task}")
-    for exp_name, grid in EXPERIMENT_SCHEMAS_EXACT.items():
-        print(f"-> {exp_name}")
-        run_experiments(task_name=task, experiment_grid=grid, n_repeats=3)
+    for task in tasks:
+        print(f"\nUruchamiam domknięcie eksperymentów dla tasku: {task}")
+        for exp_name, grid in EXPERIMENT_SCHEMAS_EXACT.items():
+            print(f"-> {exp_name}")
+            try:
+                run_experiments(task_name=task, experiment_grid=grid, n_repeats=3)
+            except FileNotFoundError:
+                print(f"UWAGA: Brakuje danych dla {task}. Odpal najpierw np. python3 -m src.run_data_prep --task {task}")
+            
+        generate_plots(task)
         
-    generate_plots(task)
-    print("Eksperymenty klasyfikacyjne zakończone sukcesem!")
+    print("\nEksperymenty dla obu zadań zakończone i zabezpieczone sukcesem!")
