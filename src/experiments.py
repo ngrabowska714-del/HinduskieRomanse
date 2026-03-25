@@ -1,7 +1,3 @@
-"""
-Szkielet dla Osoby 3.
-Cel: powtarzalne eksperymenty na własnej sieci.
-"""
 
 from __future__ import annotations
 
