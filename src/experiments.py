@@ -1,7 +1,4 @@
-"""
-Szkielet dla Osoby 3.
-Cel: powtarzalne eksperymenty na własnej sieci.
-"""
+
 
 from __future__ import annotations
 
@@ -27,9 +24,6 @@ def get_default_results_path(task_name: str) -> Path:
 
 
 def run_experiments(task_name: str, experiment_grid: dict[str, list[Any]], n_repeats: int = 3) -> None:
-    """
-    Uruchamia siatkę eksperymentów dla zadanego zadania.
-    """
     if task_name not in TASK_CONFIGS:
         raise ValueError(f"Nieznany task: {task_name}")
 
@@ -129,9 +123,6 @@ def run_experiments(task_name: str, experiment_grid: dict[str, list[Any]], n_rep
 
 
 def generate_plots(task_name: str) -> None:
-    """
-    Generuje wykresy dla pojedynczych parametrów modyfikowanych w eksperymentach.
-    """
     csv_path = get_default_results_path(task_name)
     if not csv_path.exists():
         print(f"Brak pliku z wynikami dla {task_name}. Nie generuję wykresów.")
@@ -170,7 +161,6 @@ def generate_plots(task_name: str) -> None:
 
 
 if __name__ == "__main__":
-    # Kod dodany na prośbę zespołu - odpalamy dokładnie 4 wymagane eksperymenty dla klasyfikacji
     task = "classification_divorce"
     
     EXPERIMENT_SCHEMAS_EXACT = {
